@@ -17,15 +17,21 @@ final class ViewController: UIViewController {
 
     // MARK: - Properties
 
+    private var recognizer: SpeechRecognizable = SpeechRecognizer()
+    
+    
     private let text: String = Constants.text
+    
     private var isRecordingStarted: Bool = false{
         didSet {
             if isRecordingStarted {
                 recognizeButton.backgroundColor = .red
                 recognizeButton.setTitle("Стоп", for: .normal)
+                recognizer.start()
             } else {
             recognizeButton.backgroundColor = .green
             recognizeButton.setTitle("Старт", for: .normal)
+                recognizer.stop()
             }
     }
     }
@@ -35,6 +41,11 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        
+        recognizer.delegate = self
+        recognizer.requestPermissions() { [weak self] success in
+            self?.recognizeButton.isEnabled = success
+        }
     }
 
     // MARK: - Beautiful view
@@ -71,3 +82,13 @@ final class ViewController: UIViewController {
     }
 }
 
+extension ViewController: SpeechRecognizerDelegate {
+    func output(result: SFSpeechRecognitionResult) {
+        guard !result.isFinal else {
+            outputTextView.text = result.bestTranscription.formattedString
+            return
+        }
+        let words = result.bestTranscription.segments.compactMap({ $0.substring })
+        print("Words:", words.joined(separator: ", "))
+    }
+}
