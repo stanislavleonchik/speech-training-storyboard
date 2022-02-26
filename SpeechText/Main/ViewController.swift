@@ -29,8 +29,8 @@ final class ViewController: UIViewController {
                 recognizeButton.setTitle("Стоп", for: .normal)
                 recognizer.start()
             } else {
-            recognizeButton.backgroundColor = .green
-            recognizeButton.setTitle("Старт", for: .normal)
+                recognizeButton.backgroundColor = .green
+                recognizeButton.setTitle("Старт", for: .normal)
                 recognizer.stop()
             }
     }

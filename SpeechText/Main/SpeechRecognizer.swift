@@ -109,7 +109,7 @@ final class SpeechRecognizer: SpeechRecognizable {
                 self.delegate?.output(result: result)
                 // Вот тут вовзращаем данные
             }
-            if error != nil {
+            if error != nil || isFinal {
                 self.engine.stop()
                 self.request = nil
                 self.task = nil
