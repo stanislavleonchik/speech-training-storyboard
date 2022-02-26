@@ -18,6 +18,17 @@ final class ViewController: UIViewController {
     // MARK: - Properties
 
     private let text: String = Constants.text
+    private var isRecordingStarted: Bool = false{
+        didSet {
+            if isRecordingStarted {
+                recognizeButton.backgroundColor = .red
+                recognizeButton.setTitle("Стоп", for: .normal)
+            } else {
+            recognizeButton.backgroundColor = .green
+            recognizeButton.setTitle("Старт", for: .normal)
+            }
+    }
+    }
 
     // MARK: - Lifecycle
 
@@ -26,7 +37,7 @@ final class ViewController: UIViewController {
         configureView()
     }
 
-    // MARK: - Private methods
+    // MARK: - Beautiful view
 
     private func configureView() {
         inputTextView.layer.cornerRadius = 5
@@ -46,7 +57,9 @@ final class ViewController: UIViewController {
 
     // MARK: - IBActions
 
-    @IBAction func recognizeButtonTap(_ sender: Any) {}
+    @IBAction func recognizeButtonTap(_ sender: Any) {
+        isRecordingStarted.toggle()
+    }
 
     @IBAction func resetButtonTap(_ sender: Any) {
         inputTextView.attributedText = text.attributed

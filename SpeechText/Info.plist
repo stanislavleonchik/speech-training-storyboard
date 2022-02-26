@@ -46,9 +46,9 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone Usage Description</string>
+	<string>Микрофон необходим для работы приложения</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Speech Recognition Usage Description</string>
+	<string>Распознование речи необходимо для корректной работы приложения</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

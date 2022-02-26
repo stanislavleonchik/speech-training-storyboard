@@ -5,6 +5,7 @@
 import UIKit
 
 extension UIView {
+    // MARK: - Beautiful view
     func shadow(
         radius: CGFloat = 8,
         offset: CGSize = CGSize(width: 0, height: 7),
